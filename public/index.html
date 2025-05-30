@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liebre Pay</title>
+  <!-- link to favicon -->
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <!-- link to CSS style sheets -->
+  <link rel="stylesheet" href="css/index_style.css">
+  <link rel="stylesheet" href="css/transactions_style.css">
+  <link rel="stylesheet" href="css/single_payment_style.css">
+  <link rel="stylesheet" href="css/multi_payment_style.css">
+  <link rel="stylesheet" href="css/payment_history_style.css">
+  <link rel="stylesheet" href="css/account_info_style.css">
+  <link rel="stylesheet" href="css/effects_style.css">
+
+</head>
+<body>
+  <div class="title">Liebre Pay</div>
+  <div class="powered">
+    <div class="powered-text">Powered by</div>
+    <img src="images/polkadot_logo.png" alt="Polkadot Logo">
+  </div>
+  <div class="appversion">PoC Version - Polkadot Asset Hub</div>
+  <div class="menu">
+    <button class="menu-item selected" id="single-payment">Single Payment</button>
+    <button class="menu-item" id="multi-payment">Multi Payment</button>
+    <button class="menu-item" id="account-info">Account Info</button>
+    <button class="menu-item" id="fiat-ramp">Fiat Ramp</button>
+    <button class="menu-item" id="payment-history">Payment History</button>
+  </div>
+  <div class="divider"></div>
+  <button class="button-connect" id="button-connect">Connect Wallet</button>
+  <div class="container" id="main-container"></div>
+  <ul class="extension-list" id="extension-list"></ul>
+  <ul class="account-list" id="account-list"></ul>
+  <div class="overlay" id="overlay"></div>
+  <div class="transaction-status" id="transaction-status">
+    <p id="status-message"></p>
+  </div>
+  <div class="status-container">
+    <div class="status-group" id="status-AH">
+      <span class="status-group-label">Connection status</span>
+      <div class="status-group-circle disconnected" id="circle-AH"></div>
+    </div>
+  </div>
+  
+  <!-- Polkadotjs bundles -->
+  <script defer src="polkadotjs_bundles/bundle-polkadot-util.js"></script>
+  <script defer src="polkadotjs_bundles/bundle-polkadot-util-crypto.js"></script>
+  <script defer src="polkadotjs_bundles/bundle-polkadot-keyring.js"></script>
+  <script defer src="polkadotjs_bundles/bundle-polkadot-types.js"></script>
+  <script defer src="polkadotjs_bundles/bundle-polkadot-api.js"></script>
+  <script defer src="polkadotjs_bundles/bundle-polkadot-extension-dapp.js"></script>
+
+  <!-- Papa Parse.js -->
+  <script defer src="papaparse/papaparse.min.js"></script>
+  
+  <!-- Index.js -->
+  <script type="module" src="index.js"></script>
+
+</body>
+</html>

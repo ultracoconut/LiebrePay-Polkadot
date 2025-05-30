@@ -1,0 +1,16 @@
+# Ignorar configuraciones locales
+config.json
+
+# Node.js módulos
+node_modules/
+
+# Archivos de entorno
+.env
+
+# Archivos de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# carpeta .vscode 
+.vscode/

@@ -1,0 +1,68 @@
+.ph-container {
+  width: fit-content;
+  margin: 0 auto; 
+}
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:rgb(48, 48, 48);
+  padding: 30px 20px;
+  margin: 10px auto;
+  color: grey;
+  font-size: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.total-payments-display {
+  font-size: 15px;
+  color: grey;
+}
+.transfer-list {
+  font-size: 15px;
+  background-color: rgba(48, 48, 48); 
+  color: grey;
+  text-align: left;
+  list-style-type: none; 
+  padding: 30px 20px; 
+  margin: 0 auto;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.transfer-item {
+  margin-bottom: 10px; 
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+  background-color: rgba(48, 48, 48);
+  padding: 30px 20px;
+  border-radius: 5px;
+}
+.page-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.page-button:hover {
+  background-color: #0056b3;
+}
+.page-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+.page-button:disabled:hover {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+.page-display {
+  font-size: 14px;
+  color: grey;
+}

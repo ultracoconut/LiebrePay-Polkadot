@@ -1,0 +1,16 @@
+{
+  "name": "liebrepay_project",
+  "version": "1.0.0",
+  "description": "## About Liebre Pay Liebre Pay is a financial web app aimed at businesses. This application provides small and medium-sized enterprises with the ability to make payments to both employees and suppliers in a simple and convenient manner using stablecoins such as USDC and USDT, as well as DOT.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Jordan(@ultracoconut)",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

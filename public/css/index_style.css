@@ -1,0 +1,220 @@
+body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #1e1e3d, #0d0d1e);
+      color: #fff;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+    .title {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 30px;
+    }
+    .powered {
+      position: absolute;
+      position: fixed;      
+      bottom: 15px;        
+      left: 20px;
+    }
+    .powered-text {
+      font-size: 12px;
+      color: gold;
+      margin-bottom: 6px;
+    }    
+    .appversion {
+      position: fixed;
+      top: 5px;
+      left: 50%;
+      font-size: 12px;
+      transform: translateX(-50%); 
+      color: grey; 
+    }
+    .custom-paragraph {
+      color: grey; 
+      font-size: 14px;
+    }
+    .button-connect {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .button-connect:hover {
+      background-color: #0056b3;
+    }
+    .button-connect:disabled {
+      background-color: #6c757d; 
+      color: white;
+      font-style: italic;
+    }
+    .button-connect:disabled:hover {
+      background-color: #6c757d;
+      cursor: not-allowed;
+    }
+    .container {
+      background-color: transparent;
+      border-radius: 10px;
+      padding: 20px;
+      min-width: 400px;
+      max-width: 900px;
+      width: auto;
+      text-align: center;
+      margin-top: 100px;
+      margin-bottom: 100px;
+    }
+    .menu {
+      position: absolute;
+      top: 90px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    .menu-item {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px 0;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: left;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+    }
+    .menu-item.selected {
+      background-color: #0056b3;
+    }
+    .menu-item:hover {
+      background-color: #0056b3;
+    }
+    .divider {
+      position: absolute;
+      top: 0;
+      left: 200px;
+      height: 100%;
+      width: 1px;
+      background-color: #00254f;
+    }
+    .status-container {
+      display: flex;              
+      flex-direction: column;     
+      position: fixed;      
+      bottom: 0;           
+      right: 0;              
+      width: fit-content;          
+      padding: 10px;              
+    }
+    .status-group {
+      display: flex;              
+      align-items: center;        
+      margin-bottom: 5px;        
+        }
+    .status-group-label {
+      font-size: 12px;
+      color: white;               
+      margin-right: 5px;         
+    }
+    .status-group-circle {
+      width: 8px;               
+      height: 8px;              
+      border-radius: 50%;        
+        }
+    .status-group-circle.connected {
+      background-color: green;   
+    }
+    .status-group-circle.disconnected {
+      background-color: red;     
+    }
+    .account-list {
+      background-color: #fff;
+      color: #000;
+      border-radius: 5px;
+      padding: 10px;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .account-list::before {
+      content: "Select Account"; 
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: black;
+      display: block;
+      text-align: left;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+      position: relative; 
+      margin-bottom: 20px;
+    }
+    .account-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 30px 0 0;
+    }
+    .account-list li {
+      padding: 10px;
+      cursor: pointer;
+      list-style-type: none; 
+    }
+    .account-list li:hover {
+      background-color: #f0f0f0;
+    }
+    
+    .extension-list {
+      background-color: gold;
+      color: #000;
+      border-radius: 5px;
+      padding: 10px;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .extension-list::before {
+      content: "Select Wallet"; 
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: black;
+      display: block;
+      text-align: left;
+      border-bottom: 2px solid goldenrod;
+      padding-bottom: 5px;
+      position: relative; 
+      margin-bottom: 20px;
+    }
+    .extension-list ul {
+      list-style: none;
+      padding: 0;
+      margin: 30px 0 0;
+    }
+    .extension-list li {
+      padding: 10px;
+      cursor: pointer;
+      list-style-type: none; 
+    }
+    .extension-list li:hover {
+      background-color: rgb(238, 202, 0);
+    }
+

@@ -1,0 +1,22 @@
+.transaction-status {
+      background-color: #fff;
+      color: #000;
+      border-radius: 5px;
+      padding: 20px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      height: 400px;
+      width: 500px;
+      align-items: center; 
+      justify-content: center; 
+      text-align: center; 
+    }
+    .transaction-status p {
+      margin: 10px 0;
+      font-size: 15px;
+    }
