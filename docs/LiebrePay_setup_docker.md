@@ -29,8 +29,8 @@ https://pro.subscan.io/pricing
 ## 3. Build and run the application with Docker:
 Run the following commands **in the root of the project**:
 ```bash 
-docker build -t liebrePay-app .
-docker run -p 3000:3000 liebrePay-app
+docker build -t liebrepay-app .
+docker run -p 3000:3000 liebrepay-app
 ```  
 ## 4. Access the application:
 The application should now be running on [http://localhost:3000](http://localhost:3000).
