@@ -43,13 +43,13 @@ export async function connectWallet() {
     const extensions = await getAvailableExtensions();
 
     if (!extensions) {
-      alert('No extension installed, or the authorization was not accepted');
+      alert('No extension wallet installed, or the authorization was not accepted');
       return;
     }
 
     displayExtensionList(extensions);
   } catch (error) {
-    console.error('Error connecting wallet:', error);
+    console.error('Error connecting/disconnecting wallet:', error);
     alert(`An error occurred: ${error.message || error}`);
   }
 }
