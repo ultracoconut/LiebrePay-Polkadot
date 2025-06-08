@@ -10,6 +10,7 @@ export function paymentList(transfers, listContainer) {
     //Generate the list
     transfers.forEach((transfer, index) => {
         const li = document.createElement('li');
+        li.className = 'transfer-item';
         const amount = parseFloat(transfer.amount);
         const date = new Date(transfer.block_timestamp * 1000).toLocaleString();
         const isSent = transfer.from === formatUnifiedAddress(account.address);
@@ -30,8 +31,6 @@ export function paymentList(transfers, listContainer) {
 
         //Add span to <li>
         li.appendChild(amountSpan);
-        li.style.borderBottom = '1px solid grey';
-        li.style.padding = '10px 0';
 
         //Add click event
         li.addEventListener('click', () => {
