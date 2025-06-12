@@ -1,4 +1,5 @@
 import { formatConversionOut } from '../utils/format_conversion_output.js';
+import { formatUnifiedAddress } from '../utils/format_unified_address.js';
 
 export function paymentDetailBox(transfers, index) {
   try {
@@ -20,10 +21,10 @@ export function paymentDetailBox(transfers, index) {
     const paymentDetailBox = document.getElementById('payment-detail-box');
     document.getElementById('payment-hash').textContent = `Payment hash: ${transfer.hash || 'Not Available'}`;
     document.getElementById('date-info').textContent = `Date: ${date || 'Not Available'}`;
-    document.getElementById('from-address-info').textContent = `From Address: ${transfer.from || 'Not Available'}`;
-    document.getElementById('to-address-info').textContent = `To Address: ${transfer.to || 'Not Available'}`;
+    document.getElementById('from-address-info').textContent = `From Address: ${formatUnifiedAddress(transfer.from) || 'Not Available'}`;
+    document.getElementById('to-address-info').textContent = `To Address: ${formatUnifiedAddress(transfer.to) || 'Not Available'}`;
     document.getElementById('amount-info').textContent = `Paid Amount: ${transfer.amount || 'Not Available'} ${transfer.asset_symbol || 'Not Available'}`;
-    document.getElementById('fee-info').textContent = `Network fee paid: ${formatConversionOut(fee, 12) || 'Not Available'} WND`;
+    document.getElementById('fee-info').textContent = `Network fee paid: ${formatConversionOut(fee, 10) || 'Not Available'} DOT`;
     document.getElementById('result-info').textContent = `Payment result: ${result || 'Not Available'}`;
 
     
