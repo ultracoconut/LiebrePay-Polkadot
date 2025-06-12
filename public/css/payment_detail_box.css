@@ -1,0 +1,51 @@
+.payment-detail-box {
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: auto;
+  width: 600px;
+  align-items: stretch;
+  justify-content: center;
+  text-align: left;
+}
+.detail-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.detail-divider {
+  border: none;
+  height: 1px;
+  width: 100%;
+  background-color: #ccc;
+  margin-bottom: 20px;
+}
+.info-item {
+  margin: 10px 0;
+  font-size: 15px;
+  text-align: left;
+  word-break: break-all;
+}
+.button-close-detail {
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 20px;
+}
+.button-close-detail:hover {
+  background-color: #0056b3;
+}
