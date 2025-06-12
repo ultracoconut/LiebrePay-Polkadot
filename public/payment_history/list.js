@@ -1,6 +1,6 @@
 import { account } from '../connect_wallet.js';
 import { formatUnifiedAddress } from '../utils/format_unified_address.js';
-import { transferDetailBox } from './transfer_detail_box.js';
+import { paymentDetailBox } from './payment_detail_box.js';
 
 export function paymentList(transfers, listContainer) {
     
@@ -34,7 +34,7 @@ export function paymentList(transfers, listContainer) {
 
         //Add click event
         li.addEventListener('click', () => {
-            transferDetailBox(transfers, index);
+            paymentDetailBox(transfers, index);
         });
 
         //Add <li> to the list
