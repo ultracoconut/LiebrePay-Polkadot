@@ -14,6 +14,12 @@ import { updateConnectionUI } from './update_ui/update_connection_UI.js';
 export let account = null;
 export let injector = null;
 
+function hideOverlayAndLists() {
+  document.getElementById('overlay').style.display = 'none';
+  document.getElementById('extension-list').style.display = 'none';
+  document.getElementById('account-list').style.display = 'none';
+}
+
 // CONNECT WALLET FUNCTION
 export async function connectWallet() {
 
@@ -52,6 +58,8 @@ export async function connectWallet() {
   } catch (error) {
     console.error('Error connecting/disconnecting wallet:', error);
     alert(`An error occurred: ${error.message || error}`);
+    updateConnectionUI('disconnected');
+    hideOverlayAndLists();
   }
 }
 
@@ -75,8 +83,8 @@ function displayExtensionList(extensions) {
   }catch(error){
     console.error('Error displaying extension list:', error);
     alert(`An error occurred: ${error.message || error}`);
-    document.getElementById('extension-list').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
+    updateConnectionUI('disconnected');
+    hideOverlayAndLists();
     }
 }
 
@@ -92,8 +100,7 @@ async function selectExtension(index, extensions) {
  if (!accounts || accounts.length === 0) {
   alert('No accounts available in this extension wallet');
   updateConnectionUI('disconnected');
-  document.getElementById('extension-list').style.display = 'none';
-  document.getElementById('overlay').style.display = 'none';
+  hideOverlayAndLists();
   return;
   }
 
@@ -104,8 +111,8 @@ async function selectExtension(index, extensions) {
     console.error('Error selecting extension:', error);
     alert(`An error occurred: ${error.message || error}`);
     updateConnectionUI('disconnected');
-    document.getElementById('extension-list').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
+    updateConnectionUI('disconnected');
+    hideOverlayAndLists();
     }
 }
 
@@ -130,8 +137,7 @@ function displayAccountList(accounts) {
     console.error('Error displaying account list:', error);
     alert(`An error occurred: ${error.message || error}`);
     updateConnectionUI('disconnected');
-    document.getElementById('account-list').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
+    hideOverlayAndLists();
   }
 }
 
@@ -159,7 +165,6 @@ async function selectAccount(index, accounts) {
     console.error('Error selecting account:', error);
     alert(`An error occurred while selecting the account: ${error.message || error}`);
     updateConnectionUI('disconnected');
-    document.getElementById('account-list').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
+    hideOverlayAndLists();
   }
 }
