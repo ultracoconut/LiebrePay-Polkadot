@@ -66,6 +66,8 @@ cp config.example.json config.json
 ```bash  
 node server.js
 ```
+## 14. Access the application:
+The application should now be running on [http://localhost:3000](http://localhost:3000).
 
 
 
