@@ -25,12 +25,20 @@ https://pro.subscan.io/pricing
 
     }  
     ```
+## 3.  Install Polkadot.js browser extension:
+- Download and install Polkadot.js Wallet:  
+ https://polkadot.js.org/extension/
+ 
+- Open the extension and create a new account. 
 
-## 3. Build and run the application with Docker:
+## 4. Obtain currencies:
+- Get some DOT, USDT and USDC.
+
+## 5. Build and run the application with Docker:
 Run the following commands **in the root of the project**:
 ```bash 
 docker build -t liebrepay-app .
 docker run -p 3000:3000 liebrepay-app
 ```  
-## 4. Access the application:
+## 6. Access the application:
 The application should now be running on [http://localhost:3000](http://localhost:3000).
