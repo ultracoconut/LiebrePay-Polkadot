@@ -53,11 +53,19 @@ cp config.example.json config.json
   {  
   "SUBSCAN_API_KEY": "your_api_key_here"  
 }  
-## 11.  Install Polkadot.js browser extension:
-- Download and install Polkadot.js Wallet:  
- https://polkadot.js.org/extension/
- 
-- Open the extension and create a new account. 
+## 11.  Install a supported browser-based wallet:
+Liebre Pay supports the following Polkadot-compatible browser wallets:
+
+- [Polkadot.js](https://polkadot.js.org/extension/)  
+- [Polkagate](https://polkagate.xyz/)
+- [Talisman](https://talisman.xyz/)
+- [SubWallet](https://www.subwallet.app/)
+- [Enkrypt](https://www.enkrypt.com/)
+- [Fearless wallet](https://fearlesswallet.io/)
+- [Math wallet](https://mathwallet.org/)
+- [Nightly](https://nightly.app/)
+
+Once installed, open the wallet and create or import an account.
 
 ## 12. Obtain currencies:
 - Get some DOT, USDT and USDC.
