@@ -25,7 +25,10 @@ export const EXPECTED_KEYS = [
  ];
 
 //Limit of payment rows supported per CSV file upload
-export const MAX_ROWS = 100; 
+export const MAX_ROWS = 100;
+
+//Number of rows in the payment history list
+export const HISTORY_ROWS = 20; 
  
 //Polkadot Asset Hub WebSocket Provider
 export const URL_PROVIDER = 'wss://polkadot-asset-hub-rpc.polkadot.io'; 

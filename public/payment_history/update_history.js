@@ -1,6 +1,7 @@
 import { account } from '../connect_wallet.js';
 import { fetchTransfers } from './fetch.js';
 import { paymentList } from './list.js';
+import { HISTORY_ROWS } from '../constants.js';
 
 export async function updateHistory(page) {
     
@@ -19,7 +20,7 @@ export async function updateHistory(page) {
     try {
         message.textContent = 'Loading...';
 
-        const data = await fetchTransfers(account.address, page);
+        const data = await fetchTransfers(account.address, page, HISTORY_ROWS);
         const  transfers = data.transfers;
         
         if (!transfers || transfers.length === 0) {

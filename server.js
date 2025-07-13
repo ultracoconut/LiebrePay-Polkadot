@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 
 //Transaction history endpoint
 app.post('/api/transactionHistory', async (req, res) => {
-  const { address, page = 0 } = req.body;
+  const { address, page = 0, row = 20 } = req.body;
 
   //Read config.json file
   let config;
@@ -54,7 +54,7 @@ app.post('/api/transactionHistory', async (req, res) => {
     body: JSON.stringify({
        address, 
        page, 
-       row: 20 
+       row
       }),
     redirect: 'follow' 
     };

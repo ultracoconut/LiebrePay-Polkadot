@@ -2,6 +2,7 @@ import { updateHistory } from './update_history.js';
 import { updateControls } from '../update_ui/update_controls.js';
 import { paginationState } from './pagination_state.js';
 import { updateTotalPayments } from '../update_ui/update_total_payments.js';
+import { HISTORY_ROWS } from '../constants.js';
 
 export async function paymentHistoryController() {  
 
@@ -37,7 +38,7 @@ export async function paymentHistoryController() {
     } 
 
     phContainer.style.display = 'block';
-    paginationState.totalPages = Math.ceil(transferCount / 20);
+    paginationState.totalPages = Math.ceil(transferCount / HISTORY_ROWS);
     updateControls();
     updateTotalPayments(transferCount);
 

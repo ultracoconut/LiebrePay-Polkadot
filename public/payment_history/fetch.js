@@ -1,9 +1,9 @@
-export async function fetchTransfers(address, page) {
+export async function fetchTransfers(address, page, row) {
   try {
       const response = await fetch('/api/transactionHistory', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ address, page }),
+          body: JSON.stringify({ address, page, row }),
       });
       
       if (!response.ok) {
