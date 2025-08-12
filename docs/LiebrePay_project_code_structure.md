@@ -12,14 +12,15 @@ Core Functions in index.js:
 4. **initializeApi:** Ensures the Polkadot.js API is initialized when the page loads.
 
 ### `connect_wallet.js`: This file manages wallet connection and integration with Polkadot.js extensions. It provides functionality to connect a user's wallet, select an account, and update the application's state based on the wallet's status.
-### `init_apis.js`: This file manages the connection to Polkadot.js API, specifically to the Asset Hub chain. It provides a function to initialize the connection handles key API events (such as connection, disconnection, and errors).
+### `init_apis.js`: This file manages the connection to Polkadot.js API, specifically to the Asset Hub chain. It provides a function to initialize the connection and handles key API events (such as connection, disconnection, and errors).
 ### `subscribe_balances.js`: This file manages real-time subscriptions to balance changes for specific assets using Polkadot.js API.
 ### `transactions/`: This folder contains the transaction functions as js files, which are called from the different pages of the application.
 
-Core Functions in transactions.js:
-1. **single_payment_WND:** Handles the logic to execute a single payment in WND, including user confirmation, transaction submission, and real-time status tracking on the blockchain.
-2. **single_payment_assets:** This file defines a function to handle single payments of assets (on-chain tokens) using Polkadot's Asset Hub chain. Each asset is identified by a unique Asset ID (ASSETS_ID), ensuring precise management and transfer of specific tokens. The function includes user confirmation, fee calculation, balance validation, transaction submission, and real-time status tracking.
-3. **multi_payment:** This file implements a multi-payment function for handling batch transactions involving multiple beneficiaries and different currencies. It leverages Polkadot's Asset Hub chain and supports token transfers for assets identified by their unique Asset IDs (ASSETS_ID). The function processes a CSV file containing payment instructions, validates the data for correctness, ensures sufficient balances, calculates fees, and executes transactions in a single batch. Key features include user confirmation, transaction fee estimation, and real-time status tracking.
+Core Functions in transactions/:
+1. **singlePaymentDOT:** Handles the logic to execute a single payment in DOT, including user confirmation, transaction submission, and real-time status tracking on the blockchain.
+2. **singlePaymentAssets:** This function handles single payments of assets (on-chain tokens) using Polkadot's Asset Hub chain. Each asset is identified by a unique Asset ID (ASSETS_ID), ensuring precise management and transfer of specific tokens. The function includes user confirmation, fee calculation, balance validation, transaction submission, and real-time status tracking.
+3. **multiPayment:** Implements a batch payment function for processing multiple transactions to different beneficiaries and currencies. It leverages Polkadot's Asset Hub chain and supports token transfers for assets identified by their unique Asset IDs (ASSETS_ID). The function processes a CSV file containing payment instructions, validates the data for correctness, ensures sufficient balances, calculates fees, and executes transactions in a single batch. Key features include user confirmation, transaction fee estimation, and real-time status tracking.
+4. **closeAndTransfer:** Closes an account by transferring all available funds from supported currencies to a specified recipient address. Builds an initial batch to estimate fees, displays a detailed summary to the user, and requests confirmation. Finally, it executes the transfer after deducting necessary fees.
 
 ### `init_pages/`: This folder houses the JavaScript files for the initialization functions of each page, which are invoked from the index.js.
 ### `templates/`: This folder contains the HTML files, which are loaded from the index.js.
@@ -29,6 +30,6 @@ Core Functions in transactions.js:
 
 ### `Third-party precompiled libraries`: These folders contains manually included external libraries (instead of being installed via a package manager like npm). These libraries provide essential functionality to the application, such as CSV parsing and blockchain interaction.
 
-1. **papaparse/ :** Includes the standalone version of the PapaParse library, used to parse CSV files directly in the browser. It is primarily used for batch payments where user-provided CSVs contain address, amount and currency data.
+1. **papaparse/ :** Includes the standalone version of the PapaParse library, used to parse CSV files directly in the browser. It is primarily used for batch payments where user-provided CSVs containing address, amount and currency data.
 
 2. **polkadotjs_bundles/ :** Contains pre-bundled versions of Polkadot.js libraries (e.g., polkadotApi, polkadotUtil, polkadotKeyring). These bundles expose core Polkadot blockchain interaction functionality, such as wallet interaction, balance queries, transaction submission, etc.
