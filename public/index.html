@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/account_info_style.css">
   <link rel="stylesheet" href="css/effects_style.css">
   <link rel="stylesheet" href="css/payment_detail_box.css">
+  <link rel="stylesheet" href="css/liquidate_box_style.css">
 
 </head>
 <body>
@@ -40,6 +41,7 @@
   <div class="transaction-status" id="transaction-status">
     <p id="status-message"></p>
   </div>
+  <!-- Payment detail box -->
   <div class="payment-detail-box" id="payment-detail-box">
     <h2 class="detail-title">Payment Detail</h2>
     <hr class="detail-divider">
@@ -53,6 +55,18 @@
     <hr class="detail-divider">
     <button class="button-close-detail" id="close-detail-box">Close</button>
   </div>
+  <!-- Liquidate account box -->
+  <div class="liquidate-box" id="liquidate-box">
+    <h2 class="lb-title">Liquidate Account</h2>
+    <hr class="lb-divider">
+    <input class="lb-input" type="text" id="lb-input-recipient" spellcheck="false" autocomplete="off" placeholder="Enter recipient Polkadot address">
+    
+    <div class="lb-button-row">
+      <button class="lb-button-cancel" id="lb-button-cancel">Cancel</button>
+      <button class="lb-button-transfer" id="lb-button-transfer">Transfer</button>
+    </div>
+  </div>
+  <!-- Status container -->
   <div class="status-container">
     <div class="status-group" id="status-AH">
       <span class="status-group-label">Connection status</span>
