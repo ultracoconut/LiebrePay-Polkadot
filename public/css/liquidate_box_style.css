@@ -73,10 +73,10 @@
 }
 
 .lb-button-cancel {
-  background-color: #6c757d;
+  background-color: #007bff;
 }
 .lb-button-cancel:hover {
-  background-color: #5a6268;
+  background-color: #0056b3;
 }
 
 .lb-button-transfer {
@@ -85,4 +85,15 @@
 
 .lb-button-transfer:hover {
   background-color: #218838;
+}
+
+.lb-button-transfer:disabled {
+  background-color: #6c757d; 
+  color: white;
+  cursor: not-allowed; 
+}
+
+.lb-button-transfer:disabled:hover {
+  background-color: #6c757d;
+  cursor: not-allowed;
 }
