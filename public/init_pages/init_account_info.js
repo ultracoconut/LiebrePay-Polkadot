@@ -15,6 +15,7 @@ export  function initAccountInfo(){
     //Event Listener button liquidate
     btnLiquidate.addEventListener('click', () => {
      recipientInput.value = ''; //Clean input at start
+     recipientInput.classList.remove('valid', 'invalid');
      liquidateBox.style.display = 'flex';
      overlay.style.display = 'flex';
      btnTransfer.disabled = true;
