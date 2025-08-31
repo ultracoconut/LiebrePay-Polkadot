@@ -16,6 +16,7 @@ export  function initAccountInfo(){
     btnLiquidate.addEventListener('click', () => {
      recipientInput.value = ''; //Clean input at start
      recipientInput.classList.remove('valid', 'invalid');
+     btnLiquidate.disabled = true;
      liquidateBox.style.display = 'flex';
      overlay.style.display = 'flex';
      btnTransfer.disabled = true;
@@ -30,8 +31,11 @@ export  function initAccountInfo(){
     });
 
     //Event listener close button
-    btnCancel.addEventListener('click', closeLiquidateBox);
-
+    btnCancel.addEventListener('click', () => {
+     closeLiquidateBox();
+     btnLiquidate.disabled = false;
+    });
+    
     //Function close liquidate box
     function closeLiquidateBox(){
      liquidateBox.style.display = 'none';
@@ -41,8 +45,7 @@ export  function initAccountInfo(){
     //Event listener button transfer
     btnTransfer.addEventListener('click', async () => {
   	try {
-  	   //Disable liquidate & transfer button until result
-       btnLiquidate.disabled = true;
+  	   //Disable transfer button until result
        btnTransfer.disabled = true;
 
        //Hide Liquidate box
@@ -62,7 +65,7 @@ export  function initAccountInfo(){
       }, 1000); 
 
      } finally {
-         //Enable liquidate button
+         //Enable liquidate & transfer buttons
          btnLiquidate.disabled = false;
          btnTransfer.disabled = false;
 
