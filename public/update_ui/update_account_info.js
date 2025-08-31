@@ -17,13 +17,7 @@ export  function updateAccountInfo(){
    const balanceResDOT = document.getElementById('balance-reserved-DOT-info');
    const balanceUSDT = document.getElementById('balance-USDT-info');
    const balanceUSDC = document.getElementById('balance-USDC-info');
-   const buttonLiquidate = document.getElementById('button-liquidate');
-    
-    //Enable/disable button liquidate
-    if(!account){
-      buttonLiquidate.disabled = true;
-    } else buttonLiquidate.disabled = false;
-
+   
    //Update content
    name.textContent = account?.meta?.name || 'Not selected account';
    address.textContent = account?.address ? formatUnifiedAddress(account.address) : 'Not selected account';//Encode address to Polkadot format

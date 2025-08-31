@@ -7,6 +7,7 @@ export function updateConnectionUI(state) {
   const mainButton = document.getElementById('button-connect');
   const auxButtons = document.querySelectorAll('.aux-connect');
   const sendButton = document.getElementById('button-single-payment');
+  const btnLiquidate = document.getElementById('button-liquidate');
 
   //Main button connect
   if (mainButton) {
@@ -69,6 +70,11 @@ export function updateConnectionUI(state) {
       sendButton.style.visibility = 'hidden';
       sendButton.style.pointerEvents = 'none';
     }
+  }
+
+  //Liquidate button
+  if (btnLiquidate) {
+  btnLiquidate.disabled = state !== 'connected';
   }
 
  } catch (error) {
