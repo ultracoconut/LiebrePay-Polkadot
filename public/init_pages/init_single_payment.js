@@ -37,22 +37,12 @@ sendButton.addEventListener('click', async() => {
   let result;
 
   try{
-  switch (currency) {
-      case 'DOT':
-          //Single payment DOT
-          result = await singlePaymentDOT(account.address, beneficiary, amount);
-          break;
 
-      case 'USDT':
-          //Single payment USDT
-          result = await singlePaymentAssets('USDT', account.address, beneficiary, amount);
-          break;
-
-      case 'USDC':
-          //Single payment USDC
-          result = await singlePaymentAssets('USDC', account.address, beneficiary, amount);
-          break;
-      }
+  if (currency === 'DOT') {
+        result = await singlePaymentDOT(account.address, beneficiary, amount);
+     } else {
+        result = await singlePaymentAssets(currency, account.address, beneficiary, amount);
+     }
 
     setTimeout(() => {
       alert(result);
