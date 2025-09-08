@@ -1,4 +1,4 @@
-import { MIN_BAL_FREE } from '../constants.js'
+import { MIN_BAL_FREE, DECIMAL } from '../constants.js'
 import { balances } from '../subscribe_balances.js';
 import { apiAH, initializeApi } from '../init_apis.js';
 import { injector } from '../connect_wallet.js';
@@ -33,8 +33,8 @@ export async function singlePaymentDOT(account, destination, value) {
           const {partialFee:txFee} = await extrinsic.paymentInfo(account);
   
           //Confirmation message
-          const userConfirmed = confirm(`Please, confirm payment of ${formatConversionOut(value, 10)} DOT to beneficiary ${destination}.
-          Estimated fee: ${formatConversionOut(txFee, 10)} DOT`);
+          const userConfirmed = confirm(`Please, confirm payment of ${formatConversionOut(value, DECIMAL['DOT'])} DOT to beneficiary ${destination}.
+          Estimated fee: ${formatConversionOut(txFee, DECIMAL['DOT'])} DOT`);
         
           //User cancel transaction
           if (!userConfirmed) {
