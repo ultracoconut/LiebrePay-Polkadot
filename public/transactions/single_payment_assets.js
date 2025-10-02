@@ -1,4 +1,4 @@
-import { MIN_BAL_FREE, ASSETS_ID, DECIMAL } from '../constants.js'
+import { MIN_BAL_FREE, ASSETS_ID, MULTILOCATION, DECIMAL } from '../constants.js'
 import { balances } from '../subscribe_balances.js';
 import { apiAH, initializeApi } from '../init_apis.js';
 import { injector } from '../connect_wallet.js';
@@ -28,8 +28,22 @@ export async function singlePaymentAssets (currency, account, destination, value
       const statusBox = document.getElementById('transaction-status');
       const statusMessage = document.getElementById('status-message');
       
+      //Build extrinsic
+      let extrinsic;
+      
+      if (ASSETS_ID[currency]) { //Native asset
+        extrinsic = apiAH.tx.assets.transferKeepAlive(ASSETS_ID[currency], destination, value);
+
+      } else if (MULTILOCATION[currency]) {//Foreign asset
+        const XcmV4Location = apiAH.createType('StagingXcmV4Location', MULTILOCATION[currency]); //Create type StagingXcmV4Location
+        extrinsic = apiAH.tx.foreignAssets.transferKeepAlive(XcmV4Location, destination, value);
+
+      } else {
+        reject("Unsupported asset");
+        return;
+        }
+
       //Retrieve transaction fee info
-      let extrinsic = apiAH.tx.assets.transferKeepAlive(ASSETS_ID[currency], destination, value); 
       let {partialFee:txFee} = await extrinsic.paymentInfo(account);
   
       //Confirmation message
