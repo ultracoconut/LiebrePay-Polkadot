@@ -4,7 +4,7 @@
   'USDC'
  ];
  
- //Asset IDS
+ //Native assets in Asset Hub (with numeric AssetId)
  export const ASSETS_ID = { 
    USDT:1984, 
    USDC:1337 
@@ -17,6 +17,11 @@
    USDC: 6
  };
  
+//Foreign assets in Asset Hub (with MultiLocation XCM)
+export const MULTILOCATION = {
+
+};
+
 //Header keys in the multi-payment .csv file
 export const EXPECTED_KEYS = [
   'Beneficiary',
