@@ -10,6 +10,11 @@
    USDC:1337 
  };
 
+ //Foreign assets in Asset Hub (with MultiLocation XCM)
+ export const MULTILOCATION = {
+
+ };
+
 //Decimal precision number
  export const DECIMAL = {
    DOT: 10,
@@ -17,11 +22,6 @@
    USDC: 6
  };
  
-//Foreign assets in Asset Hub (with MultiLocation XCM)
-export const MULTILOCATION = {
-
-};
-
 //Header keys in the multi-payment .csv file
 export const EXPECTED_KEYS = [
   'Beneficiary',
