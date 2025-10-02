@@ -1,7 +1,7 @@
 import { apiAH, initializeApi } from '../init_apis.js';
 import { balances } from '../subscribe_balances.js';
 import { injector } from '../connect_wallet.js';
-import { SUPPORTED_CURRENCIES, MIN_BAL_FREE, ASSETS_ID, DECIMAL } from '../constants.js';
+import { SUPPORTED_CURRENCIES, MIN_BAL_FREE, ASSETS_ID, MULTILOCATION, DECIMAL } from '../constants.js';
 import { formatConversionOut } from '../utils/format_conversion_output.js';
 
 
@@ -56,7 +56,7 @@ export async function closeAndTransfer (sourceAddress, recipientAddress) {
       return;
     }
 
-
+    
     //Construct 1st transaction batch for currencies with non-zero balances to obtain batch fee
     console.log('Constructing 1st batch...');
 
@@ -66,9 +66,19 @@ export async function closeAndTransfer (sourceAddress, recipientAddress) {
     for (const currency of nonZeroBalances) {
       if (currency === 'DOT') {
         tx = apiAH.tx.balances.transferAllowDeath(recipientAddress, balances['DOT']);
-     } else {
+     
+      } else if (ASSETS_ID[currency]) { //Native asset
           tx = apiAH.tx.assets.transfer(ASSETS_ID[currency], recipientAddress, balances[currency]);
-     }
+
+      } else if (MULTILOCATION[currency]) {//Foreign asset
+          const XcmV4Location = apiAH.createType('StagingXcmV4Location', MULTILOCATION[currency]); //Create type StagingXcmV4Location
+          tx = apiAH.tx.foreignAssets.transfer(XcmV4Location, recipientAddress, balances[currency]);
+
+      } else {
+        reject("Unsupported asset");
+        return;
+        }
+
       group.push(tx);
     }
 
@@ -108,18 +118,27 @@ export async function closeAndTransfer (sourceAddress, recipientAddress) {
     tx = null;
     group = [];
 
-    //Construct 2nd batch transaction batch after deducting DOT fees
+    //Construct 2nd transaction batch after deducting WND fees
     console.log('Constructing 2nd batch...');
 
     for (const currency of nonZeroBalances) {
       if (currency === 'DOT') {
         tx = apiAH.tx.balances.transferAllowDeath(recipientAddress, balances['DOT'].sub(feeBatch.muln(2)));
-     } else {
+
+      } else if (ASSETS_ID[currency]) { //Native asset
           tx = apiAH.tx.assets.transfer(ASSETS_ID[currency], recipientAddress, balances[currency]);
-     }
+
+      } else if (MULTILOCATION[currency]) {//Foreign asset
+          const XcmV4Location = apiAH.createType('StagingXcmV4Location', MULTILOCATION[currency]); //Create type StagingXcmV4Location
+          tx = apiAH.tx.foreignAssets.transfer(XcmV4Location, recipientAddress, balances[currency]);
+
+      } else {
+        reject("Unsupported asset");
+        return;
+        }
+
       group.push(tx);
     }
-
 
     //Construct extrinsic
     let extrinsic = apiAH.tx.utility.batch(group);
