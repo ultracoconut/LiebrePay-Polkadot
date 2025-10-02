@@ -1,7 +1,7 @@
 /*This file leverages PapaParse for parsing CSV files containing payment instructions.
    See the full license in the LICENSE file at the root of this project and also at the end of this file.*/
    
-   import { DECIMAL, MIN_BAL_FREE, ASSETS_ID, MAX_ROWS, SUPPORTED_CURRENCIES, EXPECTED_KEYS } from '../constants.js'
+   import { DECIMAL, MIN_BAL_FREE, ASSETS_ID, MULTILOCATION, MAX_ROWS, SUPPORTED_CURRENCIES, EXPECTED_KEYS } from '../constants.js'
    import { balances } from '../subscribe_balances.js';
    import { apiAH, initializeApi } from '../init_apis.js';
    import { injector } from '../connect_wallet.js';
@@ -180,14 +180,24 @@
          console.log('Constructing batch...')
    
           for (const { Beneficiary, Amount, Currency } of results) {
-    
+           
             if(Currency === 'DOT') {
                  tx = apiAH.tx.balances.transferKeepAlive(Beneficiary, formatConversionIn(Amount, DECIMAL[Currency]));
-            } else{
+            
+            } else if (ASSETS_ID[Currency]) { //Native asset
                  tx = apiAH.tx.assets.transferKeepAlive(ASSETS_ID[Currency], Beneficiary, formatConversionIn(Amount, DECIMAL[Currency]));
-            }
+
+            } else if (MULTILOCATION[Currency]) {//Foreign asset
+                 const XcmV4Location = apiAH.createType('StagingXcmV4Location', MULTILOCATION[Currency]); //Create type StagingXcmV4Location
+                 tx = apiAH.tx.foreignAssets.transferKeepAlive(XcmV4Location, Beneficiary, formatConversionIn(Amount, DECIMAL[Currency]));
+
+            } else {
+              reject("Unsupported asset");
+              return;
+              }
+
             group.push(tx);
-         }        
+         }       
    
          //Batch constructed
          console.log('Batch constructed')
