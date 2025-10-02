@@ -65,7 +65,7 @@ export async function closeAndTransfer (sourceAddress, recipientAddress) {
 
     for (const currency of nonZeroBalances) {
       if (currency === 'DOT') {
-        tx = apiAH.tx.balances.transferAllowDeath(recipientAddress, balances['DOT']);
+        tx = apiAH.tx.balances.transferAllowDeath(recipientAddress, balances[currency]);
      
       } else if (ASSETS_ID[currency]) { //Native asset
           tx = apiAH.tx.assets.transfer(ASSETS_ID[currency], recipientAddress, balances[currency]);
@@ -123,7 +123,7 @@ export async function closeAndTransfer (sourceAddress, recipientAddress) {
 
     for (const currency of nonZeroBalances) {
       if (currency === 'DOT') {
-        tx = apiAH.tx.balances.transferAllowDeath(recipientAddress, balances['DOT'].sub(feeBatch.muln(2)));
+        tx = apiAH.tx.balances.transferAllowDeath(recipientAddress, balances[currency].sub(feeBatch.muln(2)));
 
       } else if (ASSETS_ID[currency]) { //Native asset
           tx = apiAH.tx.assets.transfer(ASSETS_ID[currency], recipientAddress, balances[currency]);
