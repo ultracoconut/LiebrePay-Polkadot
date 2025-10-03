@@ -118,7 +118,7 @@ export async function closeAndTransfer (sourceAddress, recipientAddress) {
     tx = null;
     group = [];
 
-    //Construct 2nd transaction batch after deducting WND fees
+    //Construct 2nd transaction batch after deducting DOT fees
     console.log('Constructing 2nd batch...');
 
     for (const currency of nonZeroBalances) {
