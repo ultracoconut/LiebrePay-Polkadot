@@ -7,6 +7,7 @@ import { updateAccountInfo } from './update_ui/update_account_info.js';
 export let balances = { 
   DOT: null,
   DOTRes: null,
+  DOTLock: null,
   USDT: null,
   USDC: null
 };
@@ -19,7 +20,7 @@ export function subscribeBalanceChanges() {
   return new Promise(async (resolve, reject) => {
     
     try {
-      //Verify that the API have been created
+      //Verify that the API has been created
       if (!apiAH) {
         await initializeApi();
       }
@@ -33,18 +34,24 @@ export function subscribeBalanceChanges() {
       balances = { 
         DOT: BN_ZERO,
         DOTRes: BN_ZERO,
+        DOTLock: BN_ZERO,
         USDT: BN_ZERO,
         USDC: BN_ZERO
       };
 
-      unsubDOT = await apiAH.query.system.account(account.address, ({ data: balance }) => {
-        if (!balances['DOT'].eq(balance.free)) {
-          balances['DOT'] = balance.free;
+      //DOT balance (using derive)
+      unsubDOT = await apiAH.derive.balances.all(account.address, ( balance ) => { 
+        if (!balances['DOT'].eq(balance.availableBalance)) {
+          balances['DOT'] = balance.availableBalance;
           updateBalanceDisplay();
           updateAccountInfo();
         }
-        if (!balances['DOTRes'].eq(balance.reserved)) {
-          balances['DOTRes'] = balance.reserved;
+        if (!balances['DOTRes'].eq(balance.reservedBalance)) {
+          balances['DOTRes'] = balance.reservedBalance;
+          updateAccountInfo();
+        }
+        if (!balances['DOTLock'].eq(balance.lockedBalance)) {
+          balances['DOTLock'] = balance.lockedBalance;
           updateAccountInfo();
         }
       });
@@ -91,6 +98,7 @@ export function subscribeBalanceChanges() {
         balances = {
           DOT: BN_ZERO,
           DOTRes: BN_ZERO,
+          DOTLock: BN_ZERO,
           USDT: BN_ZERO,
           USDC: BN_ZERO
     };
