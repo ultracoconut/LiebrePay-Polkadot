@@ -16,6 +16,7 @@ export  function updateAccountInfo(){
    const name = document.getElementById('name-info');
    const balanceFreeDOT = document.getElementById('balance-free-DOT-info');
    const balanceResDOT = document.getElementById('balance-reserved-DOT-info');
+   const balanceLockDOT = document.getElementById('balance-locked-DOT-info');
    const balanceUSDT = document.getElementById('balance-USDT-info');
    const balanceUSDC = document.getElementById('balance-USDC-info');
    
@@ -24,6 +25,7 @@ export  function updateAccountInfo(){
    address.textContent = account?.address ? formatUnifiedAddress(account.address) : 'Not selected account';//Encode address to Polkadot format
    balanceFreeDOT.textContent = account ? `Free: ${formatConversionOut(balances['DOT'], DECIMAL['DOT'])}` : 'Not available';
    balanceResDOT.textContent = account ? `Reserved: ${formatConversionOut(balances['DOTRes'], DECIMAL['DOT'])}` : 'Not available';
+   balanceLockDOT.textContent = account ? `Locked: ${formatConversionOut(balances['DOTLock'], DECIMAL['DOT'])}` : 'Not available';
    balanceUSDT.textContent = account ? formatConversionOut(balances['USDT'], DECIMAL['USDT']) : 'Not available';
    balanceUSDC.textContent = account ? formatConversionOut(balances['USDC'], DECIMAL['USDC']) : 'Not available';
 
