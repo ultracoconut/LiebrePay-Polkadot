@@ -42,7 +42,7 @@ export async function closeAndTransfer (sourceAddress, recipientAddress) {
 
 
     //Verify source account balances
-    const nonZeroBalances = SUPPORTED_CURRENCIES.filter(currency => balances[currency]?.gt(MIN_BAL_FREE[currency]));
+    const nonZeroBalances = SUPPORTED_CURRENCIES.filter(currency => balances[currency]?.gte(MIN_BAL_FREE[currency]));
 
     console.log(nonZeroBalances);
     
@@ -86,7 +86,7 @@ export async function closeAndTransfer (sourceAddress, recipientAddress) {
     let {partialFee:feeBatch} = await apiAH.tx.utility.batch(group).paymentInfo(sourceAddress);
 
     //Verify sufficient DOT balance for fees
-    if (!balances['DOT'].gt(MIN_BAL_FREE['DOT'].add(feeBatch.muln(2)))){
+    if (!balances['DOT'].gte(MIN_BAL_FREE['DOT'].add(feeBatch.muln(2)))){
       reject ('Insufficient DOT for fees');
       return;
       } 
