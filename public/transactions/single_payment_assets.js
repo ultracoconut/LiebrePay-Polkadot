@@ -1,11 +1,10 @@
 import { MIN_BAL_FREE, ASSETS_ID, MULTILOCATION, DECIMAL } from '../constants.js'
 import { balances } from '../subscribe_balances.js';
 import { apiAH, initializeApi } from '../init_apis.js';
-import { injector } from '../connect_wallet.js';
 import { formatConversionOut } from '../utils/format_conversion_output.js';
 
 
-export async function singlePaymentAssets (currency, account, destination, value) {
+export async function singlePaymentAssets (currency, account, injector, destination, value) {
     return new Promise(async (resolve, reject) => { 
       try {
        //Verify that the API have been created
