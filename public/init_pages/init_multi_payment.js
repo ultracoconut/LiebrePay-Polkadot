@@ -1,5 +1,5 @@
         import { multiPayment } from '../transactions/multi_payment.js';
-        import { account } from '../connect_wallet.js';
+        import { walletState } from '../wallet/wallet_state.js';
         import { updateMultiPayment } from '../update_ui/update_multi_payment.js';
         
         export function initMultiPayment() {
@@ -48,7 +48,7 @@
           try {
             
             //Call multiPayment function
-            const result = await multiPayment(account.address, file);
+            const result = await multiPayment(walletState.account.address, walletState.injector, file);
             setTimeout(() => {
               alert(result);
             }, 1000);
