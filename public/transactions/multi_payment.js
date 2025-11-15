@@ -4,13 +4,12 @@
    import { DECIMAL, MIN_BAL_FREE, ASSETS_ID, MULTILOCATION, MAX_ROWS, SUPPORTED_CURRENCIES, EXPECTED_KEYS } from '../constants.js'
    import { balances } from '../subscribe_balances.js';
    import { apiAH, initializeApi } from '../init_apis.js';
-   import { injector } from '../connect_wallet.js';
    import { formatConversionIn } from '../utils/format_conversion_input.js';
    import { formatConversionOut } from '../utils/format_conversion_output.js';
    import { validateAmount } from '../utils/amount_verification.js';
    import { validateAccount } from '../utils/account_verification.js';
    
-   export async function multiPayment(address, file) {
+   export async function multiPayment(address, injector, file) {
      return new Promise(async (resolve, reject) => {
        try {
         //Verify that the API have been created
