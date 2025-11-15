@@ -1,4 +1,4 @@
-import { account } from '../connect_wallet.js';
+import { walletState } from '../wallet/wallet_state.js';
 import { formatAccountDisplay } from '../utils/format_account_display.js';
 
 export function updateConnectionUI(state) {
@@ -22,7 +22,7 @@ export function updateConnectionUI(state) {
         break;
       case 'connected':
         mainButton.textContent = '';
-        mainButton.appendChild(document.createTextNode(formatAccountDisplay(account)));
+        mainButton.appendChild(document.createTextNode(formatAccountDisplay(walletState.account)));
         mainButton.appendChild(document.createElement('br'));
         mainButton.appendChild(document.createTextNode('Click to Disconnect'));
         break;
