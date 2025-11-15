@@ -1,15 +1,15 @@
-import { paymentHistoryController } from './payment_history/payment_history_controller.js';
-import { subscribeBalanceChanges, unsubscribeBalanceChanges } from './subscribe_balances.js';
-import { validateFields } from './validate_fields.js';
-import { updateBalanceDisplay } from './update_ui/update_balance_display.js';
-import { updateMultiPayment } from './update_ui/update_multi_payment.js';
-import { updateAccountInfo } from './update_ui/update_account_info.js';
-import { getAvailableExtensions } from './utils/get_available_extensions.js';
-import { getAvailableAccounts } from './utils/get_available_accounts.js';
-import { getInjector } from './utils/get_injector.js';
-import { formatAccountDisplay } from './utils/format_account_display.js';
-import { formatUnifiedAddress } from './utils/format_unified_address.js';
-import { updateConnectionUI } from './update_ui/update_connection_UI.js';
+import { paymentHistoryController } from '../payment_history/payment_history_controller.js';
+import { subscribeBalanceChanges, unsubscribeBalanceChanges } from '../subscribe_balances.js';
+import { validateFields } from '../validate_fields.js';
+import { updateBalanceDisplay } from '../update_ui/update_balance_display.js';
+import { updateMultiPayment } from '../update_ui/update_multi_payment.js';
+import { updateAccountInfo } from '../update_ui/update_account_info.js';
+import { getAvailableExtensions } from '../utils/get_available_extensions.js';
+import { getAvailableAccounts } from '../utils/get_available_accounts.js';
+import { getInjector } from '../utils/get_injector.js';
+import { formatAccountDisplay } from '../utils/format_account_display.js';
+import { formatUnifiedAddress } from '../utils/format_unified_address.js';
+import { updateConnectionUI } from '../update_ui/update_connection_UI.js';
 import { walletState } from './wallet_state.js';
 
 function hideOverlayAndLists() {
