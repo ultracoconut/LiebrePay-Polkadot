@@ -10,9 +10,7 @@ import { getInjector } from './utils/get_injector.js';
 import { formatAccountDisplay } from './utils/format_account_display.js';
 import { formatUnifiedAddress } from './utils/format_unified_address.js';
 import { updateConnectionUI } from './update_ui/update_connection_UI.js';
-
-export let account = null;
-export let injector = null;
+import { walletState } from './wallet_state.js';
 
 function hideOverlayAndLists() {
   document.getElementById('overlay').style.display = 'none';
@@ -22,15 +20,12 @@ function hideOverlayAndLists() {
 
 // CONNECT WALLET FUNCTION
 export async function connectWallet() {
-
   try { 
-
     //There is an account connected
-    if (account) { 
+    if (walletState.isConnected()) { 
       updateConnectionUI('disconnecting');
       unsubscribeBalanceChanges();
-      account = null;
-      injector = null;
+      walletState.reset();
       
       //Update UI
       updateConnectionUI('disconnected');
@@ -145,17 +140,18 @@ function displayAccountList(accounts) {
 async function selectAccount(index, accounts) {
   
   try {
-    document.getElementById('account-list').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-
-    account = accounts[index];
-    injector = await getInjector(account.address);
+    hideOverlayAndLists();
+    
+    const account = accounts[index];
+    const injector = await getInjector(account.address);
     console.log(`Got injector for account ${formatUnifiedAddress(account.address)}`);
 
+    walletState.set({account, injector, type: 'extension'});
     await subscribeBalanceChanges();
     
     //Update UI
     updateConnectionUI('connected');
+    updateBalanceDisplay();
     paymentHistoryController();
     validateFields();
     updateMultiPayment();
