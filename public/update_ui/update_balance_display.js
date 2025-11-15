@@ -1,5 +1,5 @@
 import { balances } from '../subscribe_balances.js';
-import { account } from '../connect_wallet.js';
+import { walletState } from '../wallet/wallet_state.js';
 import { formatConversionOut } from '../utils/format_conversion_output.js';
 import { DECIMAL } from '../constants.js'
 
@@ -9,7 +9,7 @@ export function updateBalanceDisplay() {
     if (!balanceDisplay) return;
 
     try {
-        if (!account) {
+        if (!walletState.isConnected()) {
             balanceDisplay.textContent = 'Balance free: Not available';
             return;
         }
