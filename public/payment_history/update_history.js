@@ -11,7 +11,7 @@ export async function updateHistory(page) {
     
     if (!message || !listContainer) return null;
 
-    if (!account) {
+    if (!walletState.isConnected()) {
         message.textContent = 'Connect Wallet to show payment history';
         listContainer.innerHTML = '';
         return null;
