@@ -1,4 +1,4 @@
-import { account } from '../connect_wallet.js';
+import { walletState } from '../wallet/wallet_state.js';
 import { formatUnifiedAddress } from '../utils/format_unified_address.js';
 import { paymentDetailBox } from './payment_detail_box.js';
 
@@ -13,7 +13,7 @@ export function paymentList(transfers, listContainer) {
         li.className = 'transfer-item';
         const amount = parseFloat(transfer.amount);
         const date = new Date(transfer.block_timestamp * 1000).toLocaleString();
-        const isSent = transfer.from === formatUnifiedAddress(account.address);
+        const isSent = transfer.from === formatUnifiedAddress(walletState.account.address);
         const displayedAmount = isSent ? -amount : amount;
         const counterpart = isSent ? transfer.to : transfer.from;
 
