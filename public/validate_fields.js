@@ -1,6 +1,6 @@
-import { account } from './connect_wallet.js';
 import { validateAccount } from './utils/account_verification.js';
 import { validateAmount } from './utils/amount_verification.js';
+import { walletState } from './wallet/wallet_state.js';
    
 //Function to validate both Fields
 export function validateFields(){
@@ -31,7 +31,7 @@ export function validateFields(){
   beneficiaryInput.classList.remove('valid', 'invalid');
   amountInput.classList.remove('valid', 'invalid');
 
-  if (!account) {//If there is not account
+  if (!walletState.isConnected()) {//If there is not account
     //Disable inputs and send button
     beneficiaryInput.disabled = true;
     amountInput.disabled = true;
@@ -45,7 +45,7 @@ export function validateFields(){
 
   //Validate beneficiary only if it's not empty
   if (beneficiary) {
-    isValidBeneficiary = validateAccount(beneficiary) && beneficiary !== account.address;
+    isValidBeneficiary = validateAccount(beneficiary) && beneficiary !== walletState.account.address;
      beneficiaryInput.classList.add(isValidBeneficiary ? 'valid' : 'invalid');
  }
 
