@@ -1,6 +1,6 @@
 import { ASSETS_ID } from './constants.js'
 import { apiAH, initializeApi } from './init_apis.js';
-import { account } from './connect_wallet.js';
+import { walletState } from './wallet/wallet_state.js';
 import { updateBalanceDisplay } from './update_ui/update_balance_display.js';
 import { updateAccountInfo } from './update_ui/update_account_info.js';
 
@@ -40,7 +40,7 @@ export function subscribeBalanceChanges() {
       };
 
       //DOT balance (using derive)
-      unsubDOT = await apiAH.derive.balances.all(account.address, ( balance ) => { 
+      unsubDOT = await apiAH.derive.balances.all(walletState.account.address, ( balance ) => { 
         if (!balances['DOT'].eq(balance.availableBalance)) {
           balances['DOT'] = balance.availableBalance;
           updateBalanceDisplay();
@@ -56,7 +56,7 @@ export function subscribeBalanceChanges() {
         }
       });
 
-      unsubUSDT = await apiAH.query.assets.account(ASSETS_ID['USDT'], account.address, (result) => {
+      unsubUSDT = await apiAH.query.assets.account(ASSETS_ID['USDT'], walletState.account.address, (result) => {
         const newBalance = result.isSome ? result.unwrap().balance : BN_ZERO;
         if (!balances['USDT'].eq(newBalance)) {
           balances['USDT'] = newBalance;
@@ -65,7 +65,7 @@ export function subscribeBalanceChanges() {
         }
       });
 
-      unsubUSDC = await apiAH.query.assets.account(ASSETS_ID['USDC'], account.address, (result) => {
+      unsubUSDC = await apiAH.query.assets.account(ASSETS_ID['USDC'], walletState.account.address, (result) => {
         const newBalance = result.isSome ? result.unwrap().balance : BN_ZERO;
         if (!balances['USDC'].eq(newBalance)) {
           balances['USDC'] = newBalance;
