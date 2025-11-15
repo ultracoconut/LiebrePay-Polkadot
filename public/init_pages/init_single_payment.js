@@ -1,7 +1,7 @@
 import { singlePaymentDOT } from '../transactions/single_payment_DOT.js';
 import { singlePaymentAssets } from '../transactions/single_payment_assets.js';
 import { updateBalanceDisplay } from '../update_ui/update_balance_display.js';
-import { account } from '../connect_wallet.js';
+import { walletState } from '../wallet/wallet_state.js';
 import { validateFields } from '../validate_fields.js';
 import { formatConversionIn } from '../utils/format_conversion_input.js';
 import { DECIMAL } from '../constants.js';
@@ -39,9 +39,9 @@ sendButton.addEventListener('click', async() => {
   try{
 
   if (currency === 'DOT') {
-        result = await singlePaymentDOT(account.address, beneficiary, amount);
+        result = await singlePaymentDOT(walletState.account.address, walletState.injector, beneficiary, amount);
      } else {
-        result = await singlePaymentAssets(currency, account.address, beneficiary, amount);
+        result = await singlePaymentAssets(currency, walletState.account.address, walletState.injector, beneficiary, amount);
      }
 
     setTimeout(() => {
