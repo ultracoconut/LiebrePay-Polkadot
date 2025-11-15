@@ -1,4 +1,4 @@
-import { account } from '../connect_wallet.js';
+import { walletState } from '../wallet/wallet_state.js';
 
 export function updateMultiPayment() {
   try {
@@ -10,7 +10,7 @@ export function updateMultiPayment() {
     }
 
     // Disable the button if no account is connected
-    if (!account) {
+    if (!walletState.isConnected()) {
       selBut.disabled = true;
       selBut.textContent = 'Please connect a Wallet';
       return;
