@@ -52,7 +52,7 @@ export async function singlePaymentAssets (currency, account, injector, destinat
     
       //User cancel transaction
       if (!userConfirmed) {
-          reject("Payment cancelled");
+          resolve(false);
           return;
           }
       

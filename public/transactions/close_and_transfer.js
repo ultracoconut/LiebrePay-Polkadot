@@ -106,11 +106,11 @@ export async function closeAndTransfer (sourceAddress, injector, recipientAddres
 
       Do you want to continue?`;
          
-         const userConfirmed = await customConfirm(summaryMessage);
+      const userConfirmed = await customConfirm(summaryMessage);
          
-         if (!userConfirmed) {
-             reject("Transfer cancelled");
-             return;
+      if (!userConfirmed) {
+          resolve(false);
+          return;
          }   
 
       

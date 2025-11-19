@@ -233,7 +233,7 @@
          const userConfirmed = await customConfirm(summaryMessage);
          
          if (!userConfirmed) {
-             reject("Multi payment cancelled");
+             resolve(false);
              return;
          }
    

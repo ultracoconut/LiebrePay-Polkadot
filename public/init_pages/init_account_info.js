@@ -54,8 +54,14 @@ export  function initAccountInfo(){
          
     	 //Call function
        const result = await closeAndTransfer(walletState.account.address, walletState.injector, recipientInput.value.trim());
-         setTimeout(() => {
-           alert(result);
+       
+       if (result === false) {
+        console.log("Transfer cancelled by user");
+        return;
+        }
+       
+       setTimeout(() => {
+         alert(result);
           }, 1000);
           
      } catch (error) {

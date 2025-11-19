@@ -49,6 +49,12 @@
             
             //Call multiPayment function
             const result = await multiPayment(walletState.account.address, walletState.injector, file);
+
+            if (result === false) {
+  		        console.log("Multi payment cancelled by user");
+              return;
+              }
+              
             setTimeout(() => {
               alert(result);
             }, 1000);
