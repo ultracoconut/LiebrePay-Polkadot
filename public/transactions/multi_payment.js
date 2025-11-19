@@ -8,6 +8,7 @@
    import { formatConversionOut } from '../utils/format_conversion_output.js';
    import { validateAmount } from '../utils/amount_verification.js';
    import { validateAccount } from '../utils/account_verification.js';
+   import { customConfirm } from '../utils/ui/custom_confirm.js';
    
    export async function multiPayment(address, injector, file) {
      return new Promise(async (resolve, reject) => {
@@ -205,7 +206,7 @@
          console.log(`Transaction batch: ${group}`);
    
          //Retrieve transaction batch fee info
-         let {partialFee:feeBatch} = await apiAH.tx.utility.batch(group).paymentInfo(address);
+         const {partialFee:feeBatch} = await apiAH.tx.utility.batch(group).paymentInfo(address);
    
          //Verify sufficient DOT balance for fees
          const totalRequiredDOT = totalAmounts['DOT'].add(MIN_BAL_FREE['DOT']).add(feeBatch.muln(2));
@@ -229,7 +230,7 @@
          summaryMessage += `- Estimated Multi Payment fee: ${formatConversionOut(feeBatch, DECIMAL['DOT'])} DOT\n\n`;
          summaryMessage += `Do you want to continue?`;
          
-         let userConfirmed = confirm(summaryMessage);
+         const userConfirmed = await customConfirm(summaryMessage);
          
          if (!userConfirmed) {
              reject("Multi payment cancelled");
