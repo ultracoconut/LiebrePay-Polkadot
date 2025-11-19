@@ -92,7 +92,7 @@ export async function closeAndTransfer (sourceAddress, injector, recipientAddres
       } 
     
     //Show transfer summary and confirm option
-    const summaryMessage = `Transfer Summary:
+    let summaryMessage = `Transfer Summary:
 
       - From account: ${sourceAddress}
       - To account: ${recipientAddress}
