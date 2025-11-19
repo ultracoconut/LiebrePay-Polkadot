@@ -47,7 +47,7 @@ export async function singlePaymentAssets (currency, account, injector, destinat
       const {partialFee:txFee} = await extrinsic.paymentInfo(account);
   
       //Confirmation message
-      const userConfirmed = await customConfirm(`Please, confirm payment of ${formatConversionOut (value, DECIMAL[currency])} ${currency} to beneficiary ${destination}
+      const userConfirmed = await customConfirm(`Please, confirm payment of ${formatConversionOut (value, DECIMAL[currency])} ${currency} to beneficiary ${destination} .\n
       Estimated fee: ${formatConversionOut(txFee, DECIMAL['DOT'])} DOT`);
     
       //User cancel transaction
