@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="css/effects_style.css">
   <link rel="stylesheet" href="css/payment_detail_box.css">
   <link rel="stylesheet" href="css/liquidate_box_style.css">
+  <link rel="stylesheet" href="css/confirm_box_style.css">
 
 </head>
 <body>
@@ -41,6 +42,16 @@
   <div class="transaction-status" id="transaction-status">
     <p id="status-message"></p>
   </div>
+  
+  <!-- Custom confirm box -->
+  <div class="cb" id="cb">
+    <p class="cb-message" id="cb-message"></p>
+    <div class="cb-btn-row">
+      <button class="cb-btn-cancel" id="cb-btn-cancel">Cancel</button>
+      <button class="cb-btn-accept" id="cb-btn-accept">Accept</button>
+    </div>
+  </div>
+
   <!-- Status container -->
   <div class="status-container">
     <div class="status-group" id="status-AH">
