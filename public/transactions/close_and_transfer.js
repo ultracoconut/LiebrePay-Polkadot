@@ -2,6 +2,7 @@ import { apiAH, initializeApi } from '../init_apis.js';
 import { balances } from '../subscribe_balances.js';
 import { SUPPORTED_CURRENCIES, MIN_BAL_FREE, ASSETS_ID, MULTILOCATION, DECIMAL } from '../constants.js';
 import { formatConversionOut } from '../utils/format_conversion_output.js';
+import { customConfirm } from '../utils/ui/custom_confirm.js';
 
 
 export async function closeAndTransfer (sourceAddress, injector, recipientAddress) {
@@ -82,7 +83,7 @@ export async function closeAndTransfer (sourceAddress, injector, recipientAddres
     }
 
     //Retrieve transaction batch fee info
-    let {partialFee:feeBatch} = await apiAH.tx.utility.batch(group).paymentInfo(sourceAddress);
+    const {partialFee:feeBatch} = await apiAH.tx.utility.batch(group).paymentInfo(sourceAddress);
 
     //Verify sufficient DOT balance for fees
     if (!balances['DOT'].gte(MIN_BAL_FREE['DOT'].add(feeBatch.muln(2)))){
@@ -91,7 +92,7 @@ export async function closeAndTransfer (sourceAddress, injector, recipientAddres
       } 
     
     //Show transfer summary and confirm option
-    let summaryMessage = `Transfer Summary:
+    const summaryMessage = `Transfer Summary:
 
       - From account: ${sourceAddress}
       - To account: ${recipientAddress}
@@ -105,7 +106,7 @@ export async function closeAndTransfer (sourceAddress, injector, recipientAddres
 
       Do you want to continue?`;
          
-         let userConfirmed = confirm(summaryMessage);
+         const userConfirmed = await customConfirm(summaryMessage);
          
          if (!userConfirmed) {
              reject("Transfer cancelled");
