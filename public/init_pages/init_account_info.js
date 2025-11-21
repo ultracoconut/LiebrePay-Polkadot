@@ -2,6 +2,7 @@ import { updateAccountInfo } from '../update_ui/update_account_info.js';
 import { walletState } from '../wallet/wallet_state.js';
 import { closeAndTransfer } from '../transactions/close_and_transfer.js';
 import { validateAccount } from '../utils/account_verification.js';
+import { customMessage } from '../utils/ui/custom_message.js';
 
 export  function initAccountInfo(){
 
@@ -61,14 +62,14 @@ export  function initAccountInfo(){
         }
        
        setTimeout(() => {
-         alert(result);
+         customMessage(result);
           }, 1000);
           
      } catch (error) {
      //Handle any errors that occur during the transfer
      console.error(`Transfer error: ${error.message || error}`);
      setTimeout(() => {
-       alert(`Transfer error: ${error.message || error}`);
+       customMessage(`Transfer error: ${error.message || error}`);
       }, 1000); 
 
      } finally {
