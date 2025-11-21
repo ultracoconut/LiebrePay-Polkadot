@@ -1,0 +1,42 @@
+.mb {
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: auto;
+  width: 400px;
+  align-items: stretch;
+  justify-content: center;
+  text-align: left;
+}
+.mb-message {
+  margin: 10px 0;
+  font-size: 15px;
+  text-align: left;
+  word-break: break-all;
+  user-select: text; 
+  white-space: pre-wrap; /*preserve line breaks*/
+  line-height: 1.5;
+}
+.mb-btn-close { 
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #007bff;
+  align-self: center;
+  margin-top: 20px;
+}
+.mb-btn-close:hover {
+  background: #0056b3;
+}
