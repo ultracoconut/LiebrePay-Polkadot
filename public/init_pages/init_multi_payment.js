@@ -1,6 +1,7 @@
         import { multiPayment } from '../transactions/multi_payment.js';
         import { walletState } from '../wallet/wallet_state.js';
         import { updateMultiPayment } from '../update_ui/update_multi_payment.js';
+        import { customMessage } from '../utils/ui/custom_message.js';
         
         export function initMultiPayment() {
           
@@ -56,14 +57,14 @@
               }
               
             setTimeout(() => {
-              alert(result);
+              customMessage(result);
             }, 1000);
             
           } catch (error) {
             //Handle errors thrown with reject inside multiPayment
             console.error(`Multi payment error: ${error.message || error}`);
             setTimeout(() => {
-              alert(`Multi payment error: ${error.message || error}`);
+              customMessage(`Multi payment error: ${error.message || error}`);
             }, 1000);
             
 
