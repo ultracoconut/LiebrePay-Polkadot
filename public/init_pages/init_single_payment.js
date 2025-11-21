@@ -5,6 +5,7 @@ import { walletState } from '../wallet/wallet_state.js';
 import { validateFields } from '../validate_fields.js';
 import { formatConversionIn } from '../utils/format_conversion_input.js';
 import { DECIMAL } from '../constants.js';
+import { customMessage } from '../utils/ui/custom_message.js';
  
 
 export function initSinglePayment() {
@@ -51,14 +52,14 @@ sendButton.addEventListener('click', async() => {
     }
     
     setTimeout(() => {
-      alert(result);
+      customMessage(result);
     }, 1000);
 
   } catch (error) {
     //Handle any errors that occur during the transaction
     console.error(`Single payment error: ${error.message || error}`);
     setTimeout(() => {
-      alert(`Single payment error: ${error.message || error}`);
+      customMessage(`Single payment error: ${error.message || error}`);
     }, 1000);
    
 
