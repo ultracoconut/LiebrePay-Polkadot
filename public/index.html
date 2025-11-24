@@ -67,6 +67,13 @@
     </div>
   </div>
   
+  <!-- Buffer polyfill -->
+  <script src="polyfill/buffer/buffer@6.0.3.js"></script>
+  <script>
+  window.Buffer = window.buffer.Buffer;
+  console.log("Buffer loaded", Buffer);
+  </script>
+  
   <!-- Polkadotjs bundles -->
   <script defer src="polkadotjs_bundles/bundle-polkadot-util.js"></script>
   <script defer src="polkadotjs_bundles/bundle-polkadot-util-crypto.js"></script>
