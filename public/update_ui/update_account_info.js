@@ -19,6 +19,7 @@ export  function updateAccountInfo(){
    const balanceLockDOT = document.getElementById('balance-locked-DOT-info');
    const balanceUSDT = document.getElementById('balance-USDT-info');
    const balanceUSDC = document.getElementById('balance-USDC-info');
+   const balanceDAI = document.getElementById('balance-DAI-info');
    
    //Update content
    name.textContent = walletState.account?.meta?.name || 'Not selected account';
@@ -28,6 +29,7 @@ export  function updateAccountInfo(){
    balanceLockDOT.textContent = walletState.account ? `Locked: ${formatConversionOut(balances['DOTLock'], DECIMAL['DOT'])}` : 'Not available';
    balanceUSDT.textContent = walletState.account ? formatConversionOut(balances['USDT'], DECIMAL['USDT']) : 'Not available';
    balanceUSDC.textContent = walletState.account ? formatConversionOut(balances['USDC'], DECIMAL['USDC']) : 'Not available';
+   balanceDAI.textContent = walletState.account ? formatConversionOut(balances['DAI'], DECIMAL['DAI']) : 'Not available';
 
   } catch (error) {
     console.error('Error updating account info:', error);
