@@ -39,12 +39,10 @@
        let group = [];
        let rowCount = 0;
        let tx;
-       let totalAmounts = {
-          DOT: BN_ZERO, 
-          USDT: BN_ZERO, 
-          USDC: BN_ZERO 
-         };
-   
+       let totalAmounts = {};
+       for (const curr of SUPPORTED_CURRENCIES) {
+          totalAmounts[curr] = BN_ZERO;
+        }       
        let WalletsSet = new Set();
        let abortTriggered = false; //Flag to check if abort() was called
    
