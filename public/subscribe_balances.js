@@ -1,4 +1,4 @@
-import { ASSETS_ID } from './constants.js'
+import { ASSETS_ID, MULTILOCATION } from './constants.js'
 import { apiAH, initializeApi } from './init_apis.js';
 import { walletState } from './wallet/wallet_state.js';
 import { updateBalanceDisplay } from './update_ui/update_balance_display.js';
@@ -9,12 +9,14 @@ export let balances = {
   DOTRes: null,
   DOTLock: null,
   USDT: null,
-  USDC: null
+  USDC: null,
+  DAI: null,
 };
 
 let unsubDOT = null;
 let unsubUSDT = null;
 let unsubUSDC = null;
+let unsubDAI = null;
 
 export function subscribeBalanceChanges() {
   return new Promise(async (resolve, reject) => {
@@ -36,7 +38,8 @@ export function subscribeBalanceChanges() {
         DOTRes: BN_ZERO,
         DOTLock: BN_ZERO,
         USDT: BN_ZERO,
-        USDC: BN_ZERO
+        USDC: BN_ZERO,
+        DAI: BN_ZERO
       };
 
       //DOT balance (using derive)
@@ -74,6 +77,17 @@ export function subscribeBalanceChanges() {
         }
       });
 
+      const XcmV4LocationDAI = apiAH.createType('StagingXcmV4Location', MULTILOCATION['DAI']); //Create type StagingXcmV4Location
+      unsubDAI = await apiAH.query.foreignAssets.account(XcmV4LocationDAI, walletState.account.address, (result) => {
+        const newBalance = result.isSome ? result.unwrap().balance : BN_ZERO;
+        if (!balances['DAI'].eq(newBalance)) {
+          balances['DAI'] = newBalance;
+          updateBalanceDisplay();
+          updateAccountInfo(); 
+        }
+      });
+
+
       console.log('Subscribed to balance changes');
       resolve();
       
@@ -94,14 +108,16 @@ export function subscribeBalanceChanges() {
         if(unsubDOT) unsubDOT();
         if(unsubUSDT) unsubUSDT();
         if(unsubUSDC) unsubUSDC();
+        if(unsubDAI) unsubDAI();
 
         balances = {
           DOT: BN_ZERO,
           DOTRes: BN_ZERO,
           DOTLock: BN_ZERO,
           USDT: BN_ZERO,
-          USDC: BN_ZERO
-    };
+          USDC: BN_ZERO,
+          DAI: BN_ZERO
+        };
 
         console.log('Unsubscribed from balance changes');
 
