@@ -3,6 +3,7 @@ import { balances } from '../subscribe_balances.js';
 import { SUPPORTED_CURRENCIES, MIN_BAL_FREE, ASSETS_ID, MULTILOCATION, DECIMAL } from '../constants.js';
 import { formatConversionOut } from '../utils/format_conversion_output.js';
 import { customConfirm } from '../utils/ui/custom_confirm.js';
+import { formatUnifiedAddress } from '../utils/format_unified_address.js';
 
 
 export async function closeAndTransfer (sourceAddress, injector, recipientAddress) {
@@ -94,7 +95,7 @@ export async function closeAndTransfer (sourceAddress, injector, recipientAddres
     //Show transfer summary and confirm option
     let summaryMessage = `Transfer Summary:
 
-      - From account: ${sourceAddress}
+      - From account: ${formatUnifiedAddress(sourceAddress)}
       - To account: ${recipientAddress}
       - Total balances to transfer:\n`;
 
