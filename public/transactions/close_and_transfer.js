@@ -122,7 +122,11 @@ export async function closeAndTransfer (sourceAddress, injector, recipientAddres
     //Construct 2nd transaction batch after deducting DOT fees
     console.log('Constructing 2nd batch...');
 
-    for (const currency of nonZeroBalances) {
+    //Move DOT to the end of the batch
+    const currenciesOrdered = nonZeroBalances.filter(curr => curr !== 'DOT');
+    currenciesOrdered.push('DOT'); 
+
+    for (const currency of currenciesOrdered) {
       if (currency === 'DOT') {
         tx = apiAH.tx.balances.transferAllowDeath(recipientAddress, balances[currency].sub(feeBatch.muln(2)));
 
@@ -152,7 +156,7 @@ export async function closeAndTransfer (sourceAddress, injector, recipientAddres
         statusBox.style.display = 'flex';
    
         //Update the status in the status box
-        statusMessage.textContent = 'Transfering funds, please wait...';
+        statusMessage.textContent = 'Transferring funds, please wait...';
         statusMessage.appendChild(document.createElement('br'));
         statusMessage.appendChild(document.createTextNode(`Current status in blockchain: ${status.type}`));
         console.log(`Transaction current status is ${status.type}`);
