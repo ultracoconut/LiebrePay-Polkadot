@@ -35,6 +35,15 @@ body {
       transform: translateX(-50%); 
       color: grey; 
     }
+    .legal {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: grey;
+      text-align: center; 
+    }
     .custom-paragraph {
       color: grey; 
       font-size: 14px;
