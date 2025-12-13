@@ -36,6 +36,14 @@
 
  };
 
+ //Currency sufficiency
+export const CURRENCY_SUFFICIENCY = {
+  DOT: true,
+  USDT: true,
+  USDC: true,
+  DAI: false
+};
+
 //Decimal precision number
  export const DECIMAL = {
    DOT: 10,
