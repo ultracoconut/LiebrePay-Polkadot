@@ -255,7 +255,7 @@
          }
    
         //Construct extrinsic
-        let extrinsic = apiAH.tx.utility.batch(group);
+        let extrinsic = apiAH.tx.utility.batchAll(group);
    
         //Sign & send the extrinsic
         const extrinsicUnsub = await extrinsic.signAndSend(address, { signer: injector.signer }, ({events = [], status, txHash})=>{
