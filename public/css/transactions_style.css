@@ -19,4 +19,5 @@
     .transaction-status p {
       margin: 10px 0;
       font-size: 15px;
+      white-space: pre-wrap; /*preserve line breaks*/
     }

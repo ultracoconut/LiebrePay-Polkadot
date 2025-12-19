@@ -91,10 +91,10 @@ export async function singlePaymentAssets (currency, account, injector, destinat
         statusBox.style.display = 'flex';
   
          //Update the status in the status box
-         statusMessage.textContent = 'Payment in progress, please wait...';
-         statusMessage.appendChild(document.createElement('br'));
-         statusMessage.appendChild(document.createTextNode(`Current status in blockchain: ${status.type}`));
-         console.log(`Transaction current status is ${status.type}`);
+         statusMessage.textContent =
+            `Payment in progress, please wait...\n` +
+            `Current status in blockchain: ${status.type}`;
+            console.log(`Transaction current status is ${status.type}`);
     
         if (status.isFinalized){
            //Loop through Vec<EventRecord> to get ExtrinsicSuccess/Failed
@@ -117,7 +117,7 @@ export async function singlePaymentAssets (currency, account, injector, destinat
             setTimeout(() => {
               overlay.style.display = 'none';
               statusBox.style.display = 'none';
-              reject("The payment failed during blockchain processing. Please try again or contact support.");
+              reject(`The payment failed during blockchain processing. Please try again or contact support.`);
               return;  
             }, 2000);  
             }
